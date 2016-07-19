@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Directorytree
 
 **TODO: Add description**
@@ -18,3 +19,6 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
           [applications: [:directorytree]]
         end
 
+=======
+# Directorytree
+>>>>>>> 3f799911011eeed3e51b8315c69ec87b7a755ee1
