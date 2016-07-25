@@ -15,8 +15,9 @@ defmodule Directorytree do
     end
 
     defp parse_args(args) do
-        {[dir: dir], _, _} = OptionParser.parse(args)
-        dir
+        {_, args, _} = OptionParser.parse(args)
+        [head] = args
+        head
     end
 
     defp lstat_recursive(fname, map \\ %{d: 0, f: 0}, depth \\ 1) do
