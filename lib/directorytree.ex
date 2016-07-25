@@ -1,5 +1,9 @@
 defmodule Directorytree do
 
+    def main(args) do
+        args |> parse_args |> lstat
+    end
+
     def lstat(dir \\ ".") do
         if !File.dir?(dir) do
             IO.puts "#{dir} is not a directory"
@@ -8,6 +12,11 @@ defmodule Directorytree do
             IO.puts "Directories: #{Map.get(map, :d)}, Files: #{Map.get(map, :f)}"
         end
 
+    end
+
+    defp parse_args(args) do
+        {[dir: dir], _, _} = OptionParser.parse(args)
+        dir
     end
 
     defp lstat_recursive(fname, map \\ %{d: 0, f: 0}, depth \\ 1) do
@@ -27,17 +36,6 @@ defmodule Directorytree do
 
     defp update(_isdir, map) do
         {_old, map} = get_and_update(map, :f)
-        map
-    end
-
-    def stat(dir \\ ".", map \\ %{d: 0, f: 0}) do
-        IO.puts "Getting stat for #{dir}"
-        map = Enum.reduce(File.ls!(dir), map, fn (file, acc) ->
-            fullname = "#{dir}/#{file}"
-            if File.dir?(fullname), do: {old, map} = get_and_update(acc, :d), else: {old, map} = get_and_update(acc, :f)
-            map
-        end)
-
         map
     end
 

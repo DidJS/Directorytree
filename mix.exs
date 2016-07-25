@@ -7,7 +7,12 @@ defmodule Directorytree.Mixfile do
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     escript: escript,
      deps: deps]
+  end
+
+  def escript do
+    [main_module: Directorytree]
   end
 
   # Configuration for the OTP application
