@@ -33,16 +33,12 @@ defmodule Directorytree do
         end)
     end
 
-    defp get_and_update(map, prop) do
-        Map.get_and_update(map, prop, fn n -> {n, n + 1} end)
-    end
+    defp get_and_update(map, prop), do: Map.get_and_update(map, prop, fn n -> {n, n + 1} end)
 
     defp build_line(depth, line \\ "")
 
     defp build_line(depth, line) when depth == 1, do: line <> "|__ "
 
     defp build_line(depth, line), do: build_line(depth - 1, line <> "    ") # Tail recursive
-
-
 
 end
